@@ -3,4 +3,4 @@ Convert RPG Maker VX Ace Tileset.rvdata2 to RPG Maker MV/MZ JSON
 
 # Needs
 
-* (https://github.com/d9pouces/RubyMarshal)[RubyMarshal]
+* [RubyMarshal](https://github.com/d9pouces/RubyMarshal)
