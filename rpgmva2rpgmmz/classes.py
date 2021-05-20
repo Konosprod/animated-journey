@@ -1,7 +1,7 @@
-from rubymarshal.reader import loads, load
-from rubymarshal.classes import RubyObject, UserDef, registry
 from struct import *
 import json
+
+from rubymarshal.classes import RubyObject, UserDef, registry
 
 class Tileset(RubyObject):
     ruby_class_name = "RPG::Tileset"
@@ -12,18 +12,28 @@ class Tileset(RubyObject):
         tilesetNames = []
         
         for i in self.attributes["@tileset_names"]:
-            tilesetNames.append(str(i))
+            if i == b'':
+                tilesetNames.append("")
+            else:
+                tilesetNames.append(str(i))
+
+        if self.attributes["@name"] == b'':
+            self.attributes["@name"] = ""
+
+        if self.attributes["@note"] == b'':
+            self.attributes["@note"] = ""
+        
 
         todump = {
             "id": self.attributes["@id"],
             "flags": self.attributes["@flags"].flags,
-            "mode": str(self.attributes["@mode"]),
+            "mode": self.attributes["@mode"],
             "name": str(self.attributes["@name"]),
             "note": str(self.attributes["@note"]),
             "tilesetNames": tilesetNames
         }
 
-        return json.dumps(todump)
+        return todump
 
 class Table(UserDef):
     ruby_class_name = "Table"
@@ -33,15 +43,5 @@ class Table(UserDef):
         self.flags = list(unpack("@8192H", private_data[0x14:]))
         return
 
-
-
 registry.register(Table)
 registry.register(Tileset)
-
-blah = ""
-with open("Tilesets.rvdata2", "rb") as fd:
-    content = load(fd)
-    blah = content[1]
-
-for i in content[1:]:
-    print(i.tojson())
