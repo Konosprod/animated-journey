@@ -1,5 +1,10 @@
 from rubymarshal.reader import load
-from classes import Tileset, Table
+
+try:
+    from rpgmva2rpgmmz.classes import tileset
+except:
+    from classes import tileset
+    
 import json
 import argparse
 import sys
@@ -7,7 +12,7 @@ import sys
 
 def main():
 
-    parser = argparse.ArgumentParser("Convert and extract tilesets from RPG Maker VX/Ace to RPG Maker MZ")
+    parser = argparse.ArgumentParser(description="Convert and extract tilesets from RPG Maker VX/Ace to RPG Maker MZ")
     parser.add_argument("rvdata", help="Tilesets.rvdata2 from RPG Maker VX/Ace")
     parser.add_argument("-t", "--tileset", type=int, help="Tileset index you want to get")
     output_group = parser.add_mutually_exclusive_group()
