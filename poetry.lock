@@ -1,0 +1,17 @@
+[[package]]
+name = "rubymarshal"
+version = "1.2.7"
+description = "Read and write Ruby-marshalled data"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.4"
+content-hash = "8e875d75098a0014965eeffcbd27d2d34f94816b2697ff413b3b7d92bc4c25db"
+
+[metadata.files]
+rubymarshal = [
+    {file = "rubymarshal-1.2.7.tar.gz", hash = "sha256:94aa84fa42393f773c8215fab679bd3b72bbdb9f7931643d3672184cde9981d9"},
+]
